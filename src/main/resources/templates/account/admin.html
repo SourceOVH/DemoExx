@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Admin Panel</title>
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+<header>
+    <h1>Admin Panel</h1>
+    <nav>
+        <a href="/main">Home</a>
+        <a href="/profile">Profile</a>
+        <a href="/books/list">Book List</a>
+        <a href="/logout">Logout</a>
+    </nav>
+</header>
+<main>
+    <h2>Users</h2>
+    <ul>
+        <li th:each="user : ${users}">
+            <p>Username: <span th:text="${user.username}">Username</span></p>
+            <p>Email: <span th:text="${user.email}">Email</span></p>
+            <p>Phone: <span th:text="${user.numberPhone}">Phone</span></p>
+            <p>Roles: <span th:each="role : ${user.roles}" th:text="${role}">Role</span></p>
+            <form th:action="@{/delete/{id}(id=${user.id})}" method="post">
+                <button type="submit" class="bg-red-500 text-white px-4 py-2 rounded">
+                    Удалить
+                </button>
+            </form>
+
+
+            <form th:action="@{/users/role/{id}(id=${user.id})}" method="post">
+                <select name="role">
+                    <option value="ROLE_USER">User</option>
+                    <option value="ROLE_ADMIN">Admin</option>
+                </select>
+                <button type="submit">Change Role</button>
+            </form>
+
+        </li>
+    </ul>
+
+    <h2>Books</h2>
+</main>
+</body>
+</html>

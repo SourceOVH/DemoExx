@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>User Profile</title>
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+<header>
+    <h1>User Profile</h1>
+    <nav>
+        <a href="/main">Home</a>
+        <a href="/books/list">Book List</a>
+        <a href="/books/my-books">My Books</a>
+        <a href="/books/add">Add Book</a>
+        <a href="/logout">Logout</a>
+    </nav>
+</header>
+<main>
+    <h2>Profile Details</h2>
+    <p>Username: <span th:text="${user.username}">Username</span></p>
+    <p>Email: <span th:text="${user.email}">Email</span></p>
+    <p>Phone: <span th:text="${user.numberPhone}">Phone</span></p>
+    <p>Roles: <span th:each="role : ${user.roles}" th:text="${role}">Role</span></p>
+
+    <h2>Favorite Books</h2>
+</main>
+</body>
+</html>
